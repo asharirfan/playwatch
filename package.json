@@ -1,19 +1,31 @@
 {
-  "name": "playwatch",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "12.0.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
-  },
-  "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.4"
-  }
+	"name": "playwatch",
+	"private": true,
+	"version": "1.0.0",
+	"description": "A Next.js project for movie/tv shows enthusiasts",
+	"repository": "https://github.com/asharirfan/playwatch",
+	"author": {
+		"name": "Ashar Irfan",
+		"email": "mrasharirfan@gmail.com",
+		"url": "https://asharirfan.com"
+	},
+	"license": "MIT",
+	"scripts": {
+		"format": "prettier --write \"./**/*.{js,json}\"",
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"keywords": [],
+	"dependencies": {
+		"next": "12.0.4",
+		"react": "17.0.2",
+		"react-dom": "17.0.2"
+	},
+	"devDependencies": {
+		"prettier": "^2.4.1",
+		"eslint": "7.32.0",
+		"eslint-config-next": "12.0.4"
+	}
 }
