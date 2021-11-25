@@ -19,12 +19,16 @@ function redirectOnSubmit(event) {
 export default function Header() {
 	return (
 		<header>
-			<Image
-				src="/tmdb-logo.svg"
-				alt="Site Logo"
-				width={250}
-				height={70}
-			/>
+			<Link href="/">
+				<a>
+					<Image
+						src="/tmdb-logo.svg"
+						alt="Site Logo"
+						width={250}
+						height={70}
+					/>
+				</a>
+			</Link>
 			<div>
 				<Link href="/">Home</Link>
 				<Link href="/movies">Movies</Link>
