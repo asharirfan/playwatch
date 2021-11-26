@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 /**
  * Redirect search form on submit.
@@ -17,6 +19,25 @@ function redirectOnSubmit(event) {
  * @return {Element} Header.
  */
 export default function Header() {
+	const [searchQuery, setSearchQuery] = useState('');
+	const router = useRouter();
+	const { query } = router.query;
+
+	useEffect(() => {
+		if (query) {
+			setSearchQuery(query);
+		}
+	}, [query]);
+
+	/**
+	 * Handle search query.
+	 *
+	 * @param {object} event Event handler object.
+	 */
+	function handleSearchQuery(event) {
+		setSearchQuery(event.target.value);
+	}
+
 	return (
 		<header>
 			<Link href="/">
@@ -36,7 +57,13 @@ export default function Header() {
 			</div>
 			<div>
 				<form onSubmit={redirectOnSubmit}>
-					<input id="search" type="text" required />
+					<input
+						id="search"
+						onChange={handleSearchQuery}
+						required
+						type="text"
+						value={searchQuery}
+					/>
 					<button type="submit">Search</button>
 				</form>
 			</div>
