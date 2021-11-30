@@ -4,7 +4,6 @@ import { getSearchResults } from '@/functions/search';
 import config from '@/utils/config';
 import Router, { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { useState } from 'react';
 
 /**
  * Search page.
@@ -12,18 +11,18 @@ import { useState } from 'react';
  * @return {Element} HTML element.
  */
 export default function Search() {
-	// const [loading, setLoading] = useState(false);
-	// const [searchResults, setSearchResults] = useState([]);
-	const [page, setPage] = useState(1);
-
 	const router = useRouter();
-	const { query } = router.query;
-	// console.log(router);
+	const { query, page } = router.query;
 
-	const { data, error } = useSWR(
-		`${config.search}&query=${query}&page=${page}`,
-		getSearchResults
-	);
+	let searchQueryUrl = config.search;
+
+	if (!page) {
+		searchQueryUrl = `${searchQueryUrl}&query=${query}&page=1`;
+	} else {
+		searchQueryUrl = `${searchQueryUrl}&query=${query}&page=${page}`;
+	}
+
+	const { data, error } = useSWR(searchQueryUrl, getSearchResults);
 
 	/**
 	 * Load previous page results.
@@ -32,11 +31,10 @@ export default function Search() {
 		Router.push({
 			pathname: '/search',
 			query: {
-				search: encodeURI(query),
-				page: page - 1
+				query: query,
+				page: parseInt(page) - 1
 			}
 		});
-		setPage(page - 1);
 	}
 
 	/**
@@ -46,11 +44,10 @@ export default function Search() {
 		Router.push({
 			pathname: '/search',
 			query: {
-				search: encodeURI(query),
-				page: page + 1
+				query: query,
+				page: page ? parseInt(page) + 1 : 2
 			}
 		});
-		setPage(page + 1);
 	}
 
 	if (!data) {
@@ -70,11 +67,12 @@ export default function Search() {
 			</Layout>
 		);
 	}
-	// console.log(data);
 
 	return (
 		<Layout>
-			<h3>Results for {query}</h3>
+			<h3>
+				{data.total_results} results found for {query}
+			</h3>
 			<SearchList results={data.results} />
 			{data.total_pages > 1 && (
 				<>
@@ -83,7 +81,7 @@ export default function Search() {
 							Previous Page
 						</button>
 					)}
-					{page !== data.total_pages && (
+					{data.page < data.total_pages && (
 						<button onClick={loadNextPage} type="button">
 							Next Page
 						</button>
