@@ -1,17 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-
-/**
- * Redirect search form on submit.
- *
- * @param {object} event Event handler object.
- */
-function redirectOnSubmit(event) {
-	event.preventDefault();
-	location.href = `/search?query=${event.target.search.value}`;
-}
 
 /**
  * Header component.
@@ -36,6 +26,21 @@ export default function Header() {
 	 */
 	function handleSearchQuery(event) {
 		setSearchQuery(event.target.value);
+	}
+
+	/**
+	 * Redirect search form on submit.
+	 *
+	 * @param {object} event Event handler object.
+	 */
+	function redirectOnSubmit(event) {
+		event.preventDefault();
+		Router.push({
+			pathname: '/search',
+			query: {
+				query: event.target.search.value
+			}
+		});
 	}
 
 	return (
