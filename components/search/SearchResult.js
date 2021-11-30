@@ -15,15 +15,13 @@ export default function SearchResult({ result }) {
 		'tv' === result.media_type
 			? result.first_air_date
 			: result.release_date;
+	const posterPath = result.poster_path
+		? `${config.tmdbImgBaseUrl}w185${result.poster_path}`
+		: 'https://via.placeholder.com/185x278.png/353849/03CC90?text=PlayWatch';
 
 	return (
 		<article key={result.id}>
-			<Image
-				alt={title}
-				height="278"
-				src={`${config.tmdbImgBaseUrl}w185${result.poster_path}`}
-				width="185"
-			/>
+			<Image alt={title} height="278" src={posterPath} width="185" />
 			<h3>{title}</h3>
 			<p>{result.overview}</p>
 			<p>{date}</p>
