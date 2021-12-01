@@ -1,6 +1,7 @@
 import config from '@/utils/config';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+import Link from 'next/link';
 
 /**
  * Single search result.
@@ -20,12 +21,24 @@ export default function SearchResult({ result }) {
 		: 'https://via.placeholder.com/185x278.png/353849/03CC90?text=PlayWatch';
 
 	return (
-		<article key={result.id}>
-			<Image alt={title} height="278" src={posterPath} width="185" />
-			<h3>{title}</h3>
-			<p>{result.overview}</p>
-			<p>{date}</p>
-		</article>
+		<Link href={`/${result.media_type}/${result.id}`}>
+			<a>
+				<article
+					key={result.id}
+					id={`${result.media_type}-${result.id}`}
+				>
+					<Image
+						alt={title}
+						height="278"
+						src={posterPath}
+						width="185"
+					/>
+					<h3>{title}</h3>
+					<p>{result.overview}</p>
+					<p>{date}</p>
+				</article>
+			</a>
+		</Link>
 	);
 }
 
