@@ -71,7 +71,7 @@ export async function getStaticPaths() {
  * Get static props for the dynamic tv shows page.
  *
  * @param  {object} props        The component attributes as props.
- * @param  {Array}  props.params Array of tvShow ids.
+ * @param  {object} props.params Object containing tv show id.
  * @return {object}              Props object.
  */
 export async function getStaticProps({ params }) {
