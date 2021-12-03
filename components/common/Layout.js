@@ -25,7 +25,9 @@ export default function Layout({ children }) {
 				noindex={config.noindex}
 			/>
 			<Header />
-			<main id="page-content">{children}</main>
+			<main id="page-content" className="bg-green">
+				{children}
+			</main>
 			<Footer />
 		</>
 	);
