@@ -11,7 +11,7 @@ import { getTrendingMoviesByDay } from '@/functions/getTrendingMovies';
  * @param  {object}  props.initialMovies Movies data.
  * @return {Element}                     HTML element.
  */
-export default function Movies({ initialMovies }) {
+export default function Movie({ initialMovies }) {
 	const [loading, setLoading] = useState(false);
 	const [movies, setMovies] = useState([]);
 	const [page, setPage] = useState(1);
@@ -55,6 +55,6 @@ export async function getStaticProps() {
 	};
 }
 
-Movies.props = {
+Movie.props = {
 	initialMovies: PropTypes.object.isRequired
 };
