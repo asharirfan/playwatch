@@ -16,19 +16,26 @@ export default function TvShow({ tvShow }) {
 		return <Layout>Show not found.</Layout>;
 	}
 
+	const backdropPath = tvShow.backdrop_path
+		? `${config.tmdbImgBaseUrl}w1280${tvShow.backdrop_path}`
+		: 'https://via.placeholder.com/1280x720.png/353849/03CC90?text=PlayWatch';
+	const posterPath = tvShow.poster_path
+		? `${config.tmdbImgBaseUrl}w500${tvShow.poster_path}`
+		: 'https://via.placeholder.com/500x750.png/353849/03CC90?text=PlayWatch';
+
 	return (
 		<Layout>
 			<Image
 				alt={tvShow.name}
 				height="720"
-				src={`${config.tmdbImgBaseUrl}w1280${tvShow.backdrop_path}`}
+				src={backdropPath}
 				width="1280"
 			/>
 			<h3>{tvShow.name}</h3>
 			<Image
 				alt={tvShow.name}
 				height="750"
-				src={`${config.tmdbImgBaseUrl}w500${tvShow.poster_path}`}
+				src={posterPath}
 				width="500"
 			/>
 			<p>{tvShow.overview}</p>
