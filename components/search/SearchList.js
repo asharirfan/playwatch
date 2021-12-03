@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import SearchResult from '@/components/search/SearchResult';
 
-const ALLOWED_MEDIA_TYPES = ['movie', 'tv'];
+const ALLOWED_MEDIA_TYPES = ['movie', 'person', 'tv'];
 
 /**
  * Search list component.
