@@ -11,6 +11,10 @@ import Link from 'next/link';
  * @return {Element}              HTML element.
  */
 export default function TvShow({ tvShow }) {
+	const posterPath = tvShow.poster_path
+		? `${config.tmdbImgBaseUrl}w185${tvShow.poster_path}`
+		: 'https://via.placeholder.com/185x278.png/353849/03CC90?text=PlayWatch';
+
 	return (
 		<Link href={`/${tvShow.media_type}/${tvShow.id}`}>
 			<a>
@@ -18,7 +22,7 @@ export default function TvShow({ tvShow }) {
 					<Image
 						alt={tvShow.name}
 						height="278"
-						src={`${config.tmdbImgBaseUrl}w185${tvShow.poster_path}`}
+						src={posterPath}
 						width="185"
 					/>
 					<h3>{tvShow.name}</h3>
