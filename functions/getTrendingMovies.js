@@ -18,7 +18,33 @@ async function getTrendingMoviesByDay(page = 1) {
 		console.error(error);
 	}
 
-	return moviesResponse ? moviesResponse.data : { results: [] };
+	return moviesResponse && moviesResponse.status === 200
+		? moviesResponse.data
+		: { results: [] };
 }
 
-export { getTrendingMoviesByDay };
+/**
+ * Get all trending movies by day.
+ *
+ * @param  {number} numberOfPages Number of pages to get.
+ * @return {Array}                Movies array.
+ */
+async function getAllTrendingMoviesByDay(numberOfPages = 500) {
+	let currentPage = 1;
+	let movies = [];
+	let moviesResponse = null;
+
+	do {
+		moviesResponse = await getTrendingMoviesByDay(currentPage);
+
+		if (moviesResponse.results.length !== 0) {
+			movies = [...movies, ...moviesResponse.results];
+		}
+
+		currentPage = moviesResponse.page + 1;
+	} while (moviesResponse.page < numberOfPages);
+
+	return movies;
+}
+
+export { getTrendingMoviesByDay, getAllTrendingMoviesByDay };
