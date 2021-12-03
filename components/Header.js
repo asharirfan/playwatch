@@ -57,8 +57,9 @@ export default function Header() {
 			</Link>
 			<div>
 				<Link href="/">Home</Link>
-				<Link href="/movies">Movies</Link>
+				<Link href="/movie">Movies</Link>
 				<Link href="/tv">TV Shows</Link>
+				<Link href="/person">People</Link>
 			</div>
 			<div>
 				<form onSubmit={redirectOnSubmit}>
