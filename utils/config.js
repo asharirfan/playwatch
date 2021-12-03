@@ -9,5 +9,6 @@ module.exports = {
 	trendingMoviesByWeek: `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`,
 	trendingTvShowsByDay: `https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`,
 	trendingTvShowsByWeek: `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`,
+	getMovie: `https://api.themoviedb.org/3/movie`,
 	getTvShow: `https://api.themoviedb.org/3/tv`
 };
