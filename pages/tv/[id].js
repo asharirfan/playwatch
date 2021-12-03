@@ -48,7 +48,7 @@ export default function TvShow({ tvShow }) {
  * @return {object} Props object.
  */
 export async function getStaticPaths() {
-	const trendingTvShows = await getAllTrendingTvShowsByDay();
+	const trendingTvShows = await getAllTrendingTvShowsByDay(10);
 
 	const paths = trendingTvShows.map(tvShow => ({
 		params: { id: tvShow.id.toString() }

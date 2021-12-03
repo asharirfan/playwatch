@@ -24,9 +24,10 @@ async function getTrendingTvShowsByDay(page = 1) {
 /**
  * Get first 50 pages of trending tv shows by day.
  *
- * @return {Array} TV shows array.
+ * @param  {number} numberOfPages Number of pages to get.
+ * @return {Array}                TV shows array.
  */
-async function getAllTrendingTvShowsByDay() {
+async function getAllTrendingTvShowsByDay(numberOfPages = 500) {
 	let currentPage = 1;
 	let tvShows = [];
 	let tvShowsResponse = null;
@@ -39,7 +40,7 @@ async function getAllTrendingTvShowsByDay() {
 		}
 
 		currentPage = tvShowsResponse.page + 1;
-	} while (tvShowsResponse.page < 10);
+	} while (tvShowsResponse.page < numberOfPages);
 
 	return tvShows;
 }
