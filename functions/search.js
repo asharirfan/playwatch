@@ -29,7 +29,9 @@ async function querySearchResults(query, page = 1) {
 		console.error(error);
 	}
 
-	return searchResultsResponse ? searchResultsResponse.data : { results: [] };
+	return searchResultsResponse && searchResultsResponse.status === 200
+		? searchResultsResponse.data
+		: { results: [] };
 }
 
 export { getSearchResults, querySearchResults };
