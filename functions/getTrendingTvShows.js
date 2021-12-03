@@ -18,11 +18,13 @@ async function getTrendingTvShowsByDay(page = 1) {
 		console.error(error);
 	}
 
-	return tvShowsResponse ? tvShowsResponse.data : { results: [] };
+	return tvShowsResponse && tvShowsResponse.status === 200
+		? tvShowsResponse.data
+		: { results: [] };
 }
 
 /**
- * Get first 50 pages of trending tv shows by day.
+ * Get all trending tv shows by day.
  *
  * @param  {number} numberOfPages Number of pages to get.
  * @return {Array}                TV shows array.
