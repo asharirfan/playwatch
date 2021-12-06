@@ -22,6 +22,11 @@ module.exports = {
 			lg: '1024px',
 			xl: '1280px',
 			'2xl': '1536px'
+		},
+		extend: {
+			backgroundImage: {
+				'header-bg': "url('/header-bg.jpg')"
+			}
 		}
 	},
 	variants: {
