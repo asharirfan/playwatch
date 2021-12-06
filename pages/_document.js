@@ -20,7 +20,7 @@ class MyDocument extends Document {
 					href="https://fonts.googleapis.com/css2?family=Halant:wght@400;500;700&family=Nunito+Sans&display=swap"
 					rel="stylesheet"
 				/>
-				<body>
+				<body className="font-text bg-darkGrey text-base text-white">
 					<Main />
 					<NextScript />
 				</body>
