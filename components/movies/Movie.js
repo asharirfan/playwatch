@@ -12,7 +12,7 @@ import Card from '@/components/card';
 export default function Movie({ movie }) {
 	const posterPath = movie.poster_path
 		? `${config.tmdbImgBaseUrl}w342${movie.poster_path}`
-		: 'https://via.placeholder.com/185x278.png/353849/03CC90?text=PlayWatch';
+		: 'https://via.placeholder.com/342x486.png/353849/03CC90?text=PlayWatch';
 
 	return (
 		<Card
