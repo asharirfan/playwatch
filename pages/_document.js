@@ -14,7 +14,7 @@ class MyDocument extends Document {
 				<link
 					rel="preconnect"
 					href="https://fonts.gstatic.com"
-					crossOrigin
+					crossOrigin="true"
 				/>
 				<link
 					href="https://fonts.googleapis.com/css2?family=Halant:wght@400;500;700&family=Nunito+Sans&display=swap"
