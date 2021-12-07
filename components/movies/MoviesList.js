@@ -10,14 +10,17 @@ import PropTypes from 'prop-types';
  */
 export default function MoviesList({ movies }) {
 	return (
-		<div id="trending-movies">
-			{movies && movies.length > 0 ? (
-				movies.map(movie => <Movie key={movie.id} movie={movie} />)
-			) : (
-				<article>
-					<p>No movies found.</p>
-				</article>
-			)}
+		<div id="trending-movies" className="my-10">
+			<h2 className="font-heading text-2xl my-4">Trending Movies</h2>
+			<div className="flex flex-wrap justify-start -mx-4">
+				{movies && movies.length > 0 ? (
+					movies.map(movie => <Movie key={movie.id} movie={movie} />)
+				) : (
+					<article className="px-4 my-4">
+						<p>No movies found.</p>
+					</article>
+				)}
+			</div>
 		</div>
 	);
 }
