@@ -61,7 +61,7 @@ export default function Header() {
 					</Link>
 					<Menu />
 				</div>
-				<div className="container mx-auto flex flex-auto justify-center items-center h-full">
+				<div className="container mx-auto flex flex-auto justify-center items-center h-5/6">
 					<form
 						className="text-center w-1/2"
 						onSubmit={redirectOnSubmit}
