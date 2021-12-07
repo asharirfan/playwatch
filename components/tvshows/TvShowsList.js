@@ -10,16 +10,19 @@ import TvShow from '@/components/tvshows/TvShow';
  */
 export default function TvShowsList({ tvShows }) {
 	return (
-		<div id="trending-tv-shows">
-			{tvShows && tvShows.length > 0 ? (
-				tvShows.map(tvShow => (
-					<TvShow key={tvShow.id} tvShow={tvShow} />
-				))
-			) : (
-				<article>
-					<p>No tv shows found.</p>
-				</article>
-			)}
+		<div id="trending-tv-shows" className="my-10">
+			<h2 className="font-heading text-2xl my-4">Trending TV Shows</h2>
+			<div className="flex flex-wrap justify-start -mx-4">
+				{tvShows && tvShows.length > 0 ? (
+					tvShows.map(tvShow => (
+						<TvShow key={tvShow.id} tvShow={tvShow} />
+					))
+				) : (
+					<article className="px-4 my-4">
+						<p>No tv shows found.</p>
+					</article>
+				)}
+			</div>
 		</div>
 	);
 }
