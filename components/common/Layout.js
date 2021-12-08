@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
 import PropTypes from 'prop-types';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Header from '@/components/header';
 import config from '@/utils/config';
 
 /**
