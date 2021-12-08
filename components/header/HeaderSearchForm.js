@@ -1,5 +1,6 @@
 import Router, { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import Button from '@/components/button';
 
 /**
  * Search form header component.
@@ -52,12 +53,7 @@ export default function HeaderSearchForm() {
 				value={searchQuery}
 				placeholder="Search for a movie, tv show..."
 			/>
-			<button
-				className="text-text bg-green text-lg px-4 py-2"
-				type="submit"
-			>
-				Search
-			</button>
+			<Button>Search</Button>
 		</form>
 	);
 }
