@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
  * @param  {string}  props.title  Title.
  * @return {Element}              Card component.
  */
-export default function Card({ id, link, poster, date, title }) {
+export default function Card({ id, link, poster, date = '', title }) {
 	return (
 		<div className="flex-initial w-64">
 			<div className="px-4 my-4">
@@ -40,7 +40,7 @@ export default function Card({ id, link, poster, date, title }) {
 								</h3>
 							</a>
 						</Link>
-						<p>{date}</p>
+						{date && <p>{date}</p>}
 					</div>
 				</article>
 			</div>
@@ -52,6 +52,6 @@ Card.props = {
 	id: PropTypes.number.isRequired,
 	link: PropTypes.string.isRequired,
 	poster: PropTypes.string.isRequired,
-	date: PropTypes.string.isRequired,
+	date: PropTypes.string,
 	title: PropTypes.string.isRequired
 };
