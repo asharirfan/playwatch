@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
+import { getFormattedDate } from '@/functions/getDate';
 
 /**
  * Media Card component.
@@ -40,7 +41,7 @@ export default function Card({ id, link, poster, date = '', title }) {
 								</h3>
 							</a>
 						</Link>
-						{date && <p>{date}</p>}
+						{date && <p>{getFormattedDate(date)}</p>}
 					</div>
 				</article>
 			</div>
