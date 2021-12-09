@@ -1,4 +1,5 @@
 import Layout from '@/components/common/Layout';
+import SearchForm from '@/components/search/SearchForm';
 import SearchList from '@/components/search/SearchList';
 import { getSearchResults } from '@/functions/search';
 import config from '@/utils/config';
@@ -53,8 +54,11 @@ export default function Search() {
 	if (!data) {
 		return (
 			<Layout>
-				<h2>Search Page</h2>
-				<p>Getting search results...</p>
+				<SearchForm />
+				<h2 className="font-heading text-2xl my-4">Search Page</h2>
+				<p className="my-4">
+					Getting search results for <strong>{query}</strong>
+				</p>
 			</Layout>
 		);
 	}
@@ -62,18 +66,23 @@ export default function Search() {
 	if (error) {
 		return (
 			<Layout>
-				<h2>Search Page</h2>
-				<p>An error occurred while getting your results back.</p>
+				<SearchForm />
+				<h2 className="font-heading text-2xl my-4">Search Page</h2>
+				<p className="my-4">
+					An error occurred while getting your results back.
+				</p>
 			</Layout>
 		);
 	}
 
 	return (
 		<Layout>
-			<h3>
-				{data.total_results} results found for {query}
-			</h3>
-			<SearchList results={data.results} />
+			<SearchForm />
+			<SearchList
+				results={data.results}
+				totalResults={data.total_results}
+				searchQuery={query}
+			/>
 			{data.total_pages > 1 && (
 				<>
 					{1 !== data.page && (
