@@ -1,7 +1,6 @@
 import config from '@/utils/config';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
-import Link from 'next/link';
+import Card from '@/components/card';
 
 /**
  * Single search result.
@@ -20,33 +19,22 @@ export default function SearchResult({ result }) {
 
 	if ('person' !== result.media_type) {
 		posterPath = result.poster_path
-			? `${config.tmdbImgBaseUrl}w185${result.poster_path}`
-			: 'https://via.placeholder.com/185x278.png/353849/03CC90?text=PlayWatch';
+			? `${config.tmdbImgBaseUrl}w342${result.poster_path}`
+			: 'https://via.placeholder.com/342x486.png/353849/03CC90?text=PlayWatch';
 	} else {
 		posterPath = result.profile_path
-			? `${config.tmdbImgBaseUrl}w185${result.profile_path}`
-			: 'https://via.placeholder.com/185x278.png/353849/03CC90?text=PlayWatch';
+			? `${config.tmdbImgBaseUrl}w500${result.profile_path}`
+			: 'https://via.placeholder.com/500x750.png/353849/03CC90?text=PlayWatch';
 	}
 
 	return (
-		<Link href={`/${result.media_type}/${result.id}`}>
-			<a>
-				<article
-					key={result.id}
-					id={`${result.media_type}-${result.id}`}
-				>
-					<Image
-						alt={title}
-						height="278"
-						src={posterPath}
-						width="185"
-					/>
-					<h3>{title}</h3>
-					{'person' !== result.media_type && <p>{result.overview}</p>}
-					{'person' !== result.media_type && <p>{date}</p>}
-				</article>
-			</a>
-		</Link>
+		<Card
+			date={'person' !== result.media_type ? date : ''}
+			id={result.id}
+			link={`/${result.media_type}/${result.id}`}
+			poster={posterPath}
+			title={title}
+		/>
 	);
 }
 
