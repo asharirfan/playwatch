@@ -1,4 +1,5 @@
 import Layout from '@/components/common/Layout';
+import { getYear } from '@/functions/getDate';
 import { getMovie } from '@/functions/getMovie';
 import { getAllTrendingMoviesByDay } from '@/functions/getTrendingMovies';
 import config from '@/utils/config';
@@ -25,22 +26,37 @@ export default function Movie({ movie }) {
 
 	return (
 		<Layout>
-			<Image
-				alt={movie.title}
-				height="720"
-				src={backdropPath}
-				width="1280"
-			/>
-			<h3>{movie.title}</h3>
-			<Image
-				alt={movie.title}
-				height="750"
-				src={posterPath}
-				width="500"
-			/>
-			<p>{movie.overview}</p>
-			<p>Popularity: {movie.vote_average}</p>
-			<p>Release Date: {movie.release_date}</p>
+			<div>
+				<div
+					className="absolute bg-cover bg-center left-0 w-full h-headerBg"
+					style={{
+						backgroundImage: `url(${backdropPath})`,
+						zIndex: '-1'
+					}}
+				>
+					<div className="absolute top-0 h-headerBg w-full bg-darkGrey bg-opacity-80" />
+				</div>
+				<div className="flex justify-between py-8">
+					<div>
+						<h3 className="font-heading text-4xl">{movie.title}</h3>
+						<p>{getYear(movie.release_date)}</p>
+					</div>
+					<div>
+						<p>Popularity: {movie.vote_average}</p>
+					</div>
+				</div>
+				<div className="flex">
+					<Image
+						alt={movie.title}
+						height="540"
+						src={posterPath}
+						width="360"
+					/>
+					<div className="ml-4">
+						<p className="text-md">{movie.overview}</p>
+					</div>
+				</div>
+			</div>
 		</Layout>
 	);
 }
