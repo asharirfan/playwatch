@@ -13,4 +13,15 @@ function getFormattedDate(date) {
 	});
 }
 
-export { getFormattedDate };
+/**
+ * Get year from date.
+ *
+ * @param  {string} date Date.
+ * @return {string}      Year.
+ */
+function getYear(date) {
+	const dateObj = new Date(date);
+	return dateObj.getFullYear();
+}
+
+export { getFormattedDate, getYear };
