@@ -12,23 +12,35 @@ import Link from 'next/link';
  */
 export default function Person({ person }) {
 	const profilePath = person.profile_path
-		? `${config.tmdbImgBaseUrl}w185${person.profile_path}`
-		: 'https://via.placeholder.com/185x278.png/353849/03CC90?text=PlayWatch';
+		? `${config.tmdbImgBaseUrl}w500${person.profile_path}`
+		: 'https://via.placeholder.com/500x750.png/353849/03CC90?text=PlayWatch';
 
 	return (
-		<Link href={`/${person.media_type}/${person.id}`}>
-			<a>
-				<article key={person.id}>
-					<Image
-						alt={person.title}
-						height="278"
-						src={profilePath}
-						width="185"
-					/>
-					<h3>{person.name}</h3>
+		<div className="flex-initial w-64">
+			<div className="px-4 my-4">
+				<article
+					className="bg-white text-text rounded-2xl pb-4"
+					key={person.id}
+				>
+					<Link href={`/${person.media_type}/${person.id}`}>
+						<a className="cursor-pointer block">
+							<Image
+								alt={person.title}
+								className="rounded-t-2xl"
+								height="486"
+								src={profilePath}
+								width="342"
+							/>
+							<div className="mx-2 mt-2">
+								<h3 className="font-heading text-xl font-semibold">
+									{person.name}
+								</h3>
+							</div>
+						</a>
+					</Link>
 				</article>
-			</a>
-		</Link>
+			</div>
+		</div>
 	);
 }
 
