@@ -39,3 +39,11 @@ textarea {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.h-headerBg {
+	height: 700px;
+}
+
+.min-h-headerBg {
+	min-height: 700px;
+}
