@@ -4,6 +4,7 @@ import { getMovie } from '@/functions/getMovie';
 import { getAllTrendingMoviesByDay } from '@/functions/getTrendingMovies';
 import config from '@/utils/config';
 import Image from 'next/image';
+import { getMovieRuntime } from '@/functions/getRuntime';
 
 /**
  * Single movie page.
@@ -39,7 +40,10 @@ export default function Movie({ movie }) {
 				<div className="flex justify-between py-8">
 					<div>
 						<h3 className="font-heading text-4xl">{movie.title}</h3>
-						<p>{getYear(movie.release_date)}</p>
+						<p>
+							{getYear(movie.release_date)} -{' '}
+							{getMovieRuntime(movie.runtime)}
+						</p>
 					</div>
 					<div>
 						<p>Popularity: {movie.vote_average}</p>
@@ -55,7 +59,22 @@ export default function Movie({ movie }) {
 						/>
 					</div>
 					<div className="ml-4 w-4/5">
-						<p className="text-md">{movie.overview}</p>
+						<p className="mb-2">
+							{movie.genres &&
+								movie.genres.map(genre => {
+									return (
+										<span
+											className="border inline-block mr-3 p-1 rounded-2xl"
+											key={genre.id}
+										>
+											{genre.name}
+										</span>
+									);
+								})}
+						</p>
+						<p className="italic mb-2">{movie.tagline}</p>
+						<h4 className="font-heading mb-2 text-xl">Overview</h4>
+						<p className="mb-2">{movie.overview}</p>
 					</div>
 				</div>
 			</div>
