@@ -16,13 +16,6 @@ module.exports = {
 			heading: ['Halant', 'serif'],
 			text: ['Nunito Sans', 'sans-serif']
 		},
-		height: {
-			sm: '8px',
-			md: '16px',
-			lg: '24px',
-			xl: '48px',
-			headerBg: '700px'
-		},
 		screens: {
 			sm: '640px',
 			md: '768px',
