@@ -26,7 +26,7 @@ export default function Movie({ movie }) {
 
 	return (
 		<Layout>
-			<div>
+			<div className="min-h-headerBg">
 				<div
 					className="absolute bg-cover bg-center left-0 w-full h-headerBg"
 					style={{
@@ -46,13 +46,15 @@ export default function Movie({ movie }) {
 					</div>
 				</div>
 				<div className="flex">
-					<Image
-						alt={movie.title}
-						height="540"
-						src={posterPath}
-						width="360"
-					/>
-					<div className="ml-4">
+					<div className="w-1/5">
+						<Image
+							alt={movie.title}
+							height="540"
+							src={posterPath}
+							width="360"
+						/>
+					</div>
+					<div className="ml-4 w-4/5">
 						<p className="text-md">{movie.overview}</p>
 					</div>
 				</div>
