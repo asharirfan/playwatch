@@ -16,7 +16,7 @@ import { getFormattedDate } from '@/functions/getDate';
  */
 export default function Card({ id, link, poster, date = '', title }) {
 	return (
-		<div className="flex-initial w-64">
+		<div className="flex-initial w-72">
 			<div className="px-4 my-4">
 				<article
 					key={id}
