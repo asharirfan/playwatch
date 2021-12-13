@@ -23,4 +23,17 @@ async function getPerson(id) {
 		: false;
 }
 
-export { getPerson };
+/**
+ * Get full path of the person image.
+ *
+ * @param  {string} path Person image path from API.
+ * @param  {string} size Image size.
+ * @return {string}      Full path to person image.
+ */
+function getPersonImgPath(path, size = 'w500') {
+	return path
+		? `${config.tmdbImgBaseUrl}${size}${path}`
+		: 'https://via.placeholder.com/500x750.png/353849/03CC90?text=PlayWatch';
+}
+
+export { getPerson, getPersonImgPath };
