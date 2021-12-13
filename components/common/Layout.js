@@ -25,7 +25,7 @@ export default function Layout({ children }) {
 				noindex={config.noindex}
 			/>
 			<Header />
-			<div className="container m-auto">
+			<div className="container m-auto px-16">
 				<main id="page-content">{children}</main>
 			</div>
 			<Footer />
