@@ -91,3 +91,5 @@ settings.dat
 
 # VSCode
 .vscode
+
+!public/icons
