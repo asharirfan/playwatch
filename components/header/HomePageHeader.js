@@ -9,14 +9,14 @@ import HeaderSearchForm from '@/components/header/HeaderSearchForm';
  */
 export default function HomePageHeader() {
 	return (
-		<header className="relative bg-header-bg">
+		<header className="relative bg-header-bg bg-cover">
 			<div className="absolute top-0 h-screen w-full bg-darkGrey bg-opacity-60 z-0" />
 			<div className="relative h-screen z-10">
-				<div className="container mx-auto flex flex-auto justify-between items-center">
+				<div className="container mx-auto px-16 flex flex-auto justify-between items-center">
 					<Logo />
 					<Menu />
 				</div>
-				<div className="container mx-auto flex flex-auto justify-center items-center h-5/6">
+				<div className="container mx-auto px-16 flex flex-auto justify-center items-center h-5/6">
 					<HeaderSearchForm />
 				</div>
 			</div>

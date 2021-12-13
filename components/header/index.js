@@ -19,7 +19,7 @@ export default function Header() {
 	return (
 		<header className="relative">
 			<div className="relative z-10">
-				<div className="container mx-auto flex flex-auto justify-between items-center">
+				<div className="container px-16 mx-auto flex flex-auto justify-between items-center">
 					<Logo />
 					<Menu />
 				</div>
