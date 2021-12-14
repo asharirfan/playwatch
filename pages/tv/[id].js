@@ -12,6 +12,7 @@ import {
 	getTvShowKeywords
 } from '@/functions/getTvShow';
 import { getBackdropPath, getPosterPath } from '@/functions/image';
+import Seasons from '@/components/common/single/Seasons';
 
 /**
  * Single tv show page.
@@ -47,6 +48,7 @@ export default function TvShow({ credits, externalIds, keywords, tvShow }) {
 			<div className="flex mt-8">
 				<div className="w-4/5">
 					<Cast cast={credits.cast} />
+					<Seasons seasons={tvShow.seasons} />
 				</div>
 				<div className="w-1/5 px-4 mt-2">
 					<Widget
