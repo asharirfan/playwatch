@@ -1,48 +1,72 @@
 import Layout from '@/components/common/Layout';
+import Cast from '@/components/common/single/Cast';
+import Header from '@/components/common/single/Header';
+import Widget from '@/components/common/single/widget';
+import KeywordsWidget from '@/components/common/single/widget/KeywordsWidget';
+import PopularityWidget from '@/components/common/single/widget/PopularityWidget';
 import { getAllTrendingTvShowsByDay } from '@/functions/getTrendingTvShows';
-import { getTvShow } from '@/functions/getTvShow';
-import config from '@/utils/config';
-import Image from 'next/image';
+import {
+	getTvShow,
+	getTvShowCredits,
+	getTvShowExternalIds,
+	getTvShowKeywords
+} from '@/functions/getTvShow';
+import { getBackdropPath, getPosterPath } from '@/functions/image';
 
 /**
  * Single tv show page.
  *
- * @param  {object}  props        The component attributes as props.
- * @param  {object}  props.tvShow TV show object.
- * @return {Element}              TV show page.
+ * @param  {object}  props             The component attributes as props.
+ * @param  {object}  props.credits     TV show credits object.
+ * @param  {object}  props.externalIds TV show external ids object.
+ * @param  {object}  props.keywords    TV show keywords object.
+ * @param  {object}  props.tvShow      TV show object.
+ * @return {Element}                   TV show page.
  */
-export default function TvShow({ tvShow }) {
+export default function TvShow({ credits, externalIds, keywords, tvShow }) {
 	if (!tvShow) {
 		return <Layout>Show not found.</Layout>;
 	}
 
-	const backdropPath = tvShow.backdrop_path
-		? `${config.tmdbImgBaseUrl}w1280${tvShow.backdrop_path}`
-		: 'https://via.placeholder.com/1280x720.png/353849/03CC90?text=PlayWatch';
-	const posterPath = tvShow.poster_path
-		? `${config.tmdbImgBaseUrl}w500${tvShow.poster_path}`
-		: 'https://via.placeholder.com/500x750.png/353849/03CC90?text=PlayWatch';
+	const backdropPath = getBackdropPath(tvShow.backdrop_path);
+	const posterPath = getPosterPath(tvShow.poster_path);
 
 	return (
 		<Layout>
-			<Image
-				alt={tvShow.name}
-				height="720"
-				src={backdropPath}
-				width="1280"
+			<Header
+				backdropPath={backdropPath}
+				date={tvShow.first_air_date}
+				externalIds={externalIds}
+				genres={tvShow.genres}
+				overview={tvShow.overview}
+				posterPath={posterPath}
+				runTime=""
+				tagline={tvShow.tagline}
+				title={tvShow.name}
 			/>
-			<h3>{tvShow.name}</h3>
-			<Image
-				alt={tvShow.name}
-				height="750"
-				src={posterPath}
-				width="500"
-			/>
-			<p>{tvShow.overview}</p>
-			<p>Popularity: {tvShow.vote_average}</p>
-			<p>First Air Date: {tvShow.first_air_date}</p>
-			<p>Number of seasons: {tvShow.number_of_seasons}</p>
-			<p>Number of episodes: {tvShow.number_of_episodes}</p>
+			<div className="flex mt-8">
+				<div className="w-4/5">
+					<Cast cast={credits.cast} />
+				</div>
+				<div className="w-1/5 px-4 mt-2">
+					<Widget
+						label="Original Title"
+						value={tvShow.original_name}
+					/>
+					<PopularityWidget popularity={tvShow.vote_average} />
+					<Widget label="Status" value={tvShow.status} />
+					<Widget
+						label="Number of Seasons"
+						value={tvShow.number_of_seasons}
+					/>
+					<Widget
+						label="Number of Episodes"
+						value={tvShow.number_of_episodes}
+					/>
+					<Widget label="Type" value={tvShow.type} />
+					<KeywordsWidget keywords={keywords.results} />
+				</div>
+			</div>
 		</Layout>
 	);
 }
@@ -75,11 +99,12 @@ export async function getStaticPaths() {
  * @return {object}              Props object.
  */
 export async function getStaticProps({ params }) {
-	const tvShow = await getTvShow(params.id);
-
 	return {
 		props: {
-			tvShow
+			credits: await getTvShowCredits(params.id),
+			externalIds: await getTvShowExternalIds(params.id),
+			keywords: await getTvShowKeywords(params.id),
+			tvShow: await getTvShow(params.id)
 		},
 		revalidate: 86400
 	};
