@@ -62,6 +62,7 @@ export default function Header({
 				<div className="w-1/5">
 					<Image
 						alt={title}
+						className="shadow-2xl"
 						height="540"
 						src={posterPath}
 						width="360"
