@@ -8,12 +8,12 @@ import {
 	getMoviePosterPath
 } from '@/functions/getMovie';
 import { getAllTrendingMoviesByDay } from '@/functions/getTrendingMovies';
-import Image from 'next/image';
-import Link from 'next/link';
-import { getPersonImgPath } from '@/functions/getPerson';
 import { formatCurrency } from '@/functions/format';
-import ProgressBar from '@ramonak/react-progress-bar';
 import Header from '@/components/common/single/Header';
+import Cast from '@/components/common/single/Cast';
+import Widget from '@/components/common/single/widget';
+import PopularityWidget from '@/components/common/single/widget/PopularityWidget';
+import KeywordsWidget from '@/components/common/single/widget/KeywordsWidget';
 
 /**
  * Single movie page.
@@ -29,8 +29,6 @@ export default function Movie({ credits, externalIds, keywords, movie }) {
 	if (!movie) {
 		return <Layout>Movie not found.</Layout>;
 	}
-
-	const { cast } = credits;
 
 	const backdropPath = getMovieBackdropPath(movie.backdrop_path);
 	const posterPath = getMoviePosterPath(movie.poster_path);
@@ -50,92 +48,24 @@ export default function Movie({ credits, externalIds, keywords, movie }) {
 			/>
 			<div className="flex mt-8">
 				<div className="w-4/5">
-					<h3 className="font-heading my-2 text-2xl">Cast</h3>
-					<div className="flex flex-wrap justify-start mt-4 -mx-2">
-						{cast &&
-							cast.map(person => {
-								if (!person.profile_path) {
-									return;
-								}
-
-								return (
-									<div className="w-36 m-2" key={person.id}>
-										<Link href={`/person/${person.id}`}>
-											<a className="cursor-pointer">
-												<Image
-													alt={person.name}
-													height={278}
-													src={getPersonImgPath(
-														person.profile_path,
-														'w185'
-													)}
-													width={185}
-												/>
-											</a>
-										</Link>
-										<Link href={`/person/${person.id}`}>
-											<a className="cursor-pointer text-lg hover:text-green">
-												<h4>{person.name}</h4>
-											</a>
-										</Link>
-										<p className="text-md opacity-60">
-											as {person.character}
-										</p>
-									</div>
-								);
-							})}
-					</div>
+					<Cast cast={credits.cast} />
 				</div>
 				<div className="w-1/5 px-4 mt-2">
-					<div className="mb-4">
-						<p className="text-md mb-2 opacity-60">
-							Original Title
-						</p>
-						<p className="font-heading text-xl">
-							{movie.original_title}
-						</p>
-					</div>
-					<div className="mb-4">
-						<p className="text-md mb-2 opacity-60">Popularity</p>
-						<ProgressBar
-							completed={movie.vote_average * 10}
-							bgColor="#03CC90"
-							baseBgColor="#ffffff"
-							labelColor="#3F4354"
-						/>
-					</div>
-					<div className="mb-4">
-						<p className="text-md mb-2 opacity-60">Status</p>
-						<p className="font-heading text-xl">{movie.status}</p>
-					</div>
-					<div className="mb-4">
-						<p className="text-md mb-2 opacity-60">Budget</p>
-						<p className="font-heading text-xl">
-							{formatCurrency(movie.budget)}
-						</p>
-					</div>
-					<div className="mb-4">
-						<p className="text-md mb-2 opacity-60">Revenue</p>
-						<p className="font-heading text-xl">
-							{formatCurrency(movie.revenue)}
-						</p>
-					</div>
-					<div className="mb-4">
-						<p className="text-md mb-2 opacity-60">Keywords</p>
-						<p>
-							{keywords.keywords &&
-								keywords.keywords.map(keyword => {
-									return (
-										<span
-											className="bg-green inline-block mr-4 mb-4 py-1 px-2 text-grey rounded-2xl"
-											key={keyword.id}
-										>
-											{keyword.name}
-										</span>
-									);
-								})}
-						</p>
-					</div>
+					<Widget
+						label="Original Title"
+						value={movie.original_title}
+					/>
+					<PopularityWidget popularity={movie.vote_average} />
+					<Widget label="Status" value={movie.status} />
+					<Widget
+						label="Budget"
+						value={formatCurrency(movie.budget)}
+					/>
+					<Widget
+						label="Revenue"
+						value={formatCurrency(movie.revenue)}
+					/>
+					<KeywordsWidget keywords={keywords.keywords} />
 				</div>
 			</div>
 		</Layout>
