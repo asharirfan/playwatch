@@ -1,11 +1,9 @@
 import Layout from '@/components/common/Layout';
 import {
 	getMovie,
-	getMovieBackdropPath,
 	getMovieCredits,
 	getMovieExternalIds,
-	getMovieKeywords,
-	getMoviePosterPath
+	getMovieKeywords
 } from '@/functions/getMovie';
 import { getAllTrendingMoviesByDay } from '@/functions/getTrendingMovies';
 import { formatCurrency } from '@/functions/format';
@@ -14,6 +12,7 @@ import Cast from '@/components/common/single/Cast';
 import Widget from '@/components/common/single/widget';
 import PopularityWidget from '@/components/common/single/widget/PopularityWidget';
 import KeywordsWidget from '@/components/common/single/widget/KeywordsWidget';
+import { getBackdropPath, getPosterPath } from '@/functions/image';
 
 /**
  * Single movie page.
@@ -30,8 +29,8 @@ export default function Movie({ credits, externalIds, keywords, movie }) {
 		return <Layout>Movie not found.</Layout>;
 	}
 
-	const backdropPath = getMovieBackdropPath(movie.backdrop_path);
-	const posterPath = getMoviePosterPath(movie.poster_path);
+	const backdropPath = getBackdropPath(movie.backdrop_path);
+	const posterPath = getPosterPath(movie.poster_path);
 
 	return (
 		<Layout>
