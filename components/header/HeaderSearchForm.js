@@ -43,9 +43,9 @@ export default function HeaderSearchForm() {
 	}
 
 	return (
-		<form className="text-center w-1/2" onSubmit={redirectOnSubmit}>
+		<form className="text-center w-2/3" onSubmit={redirectOnSubmit}>
 			<input
-				className="text-text bg-white px-4 py-2 w-3/4 text-lg text-left"
+				className="text-text bg-white px-4 py-2 w-5/6 text-lg text-left"
 				id="search"
 				onChange={handleSearchQuery}
 				required
@@ -53,7 +53,7 @@ export default function HeaderSearchForm() {
 				value={searchQuery}
 				placeholder="Search for a movie, tv show..."
 			/>
-			<Button>Search</Button>
+			<Button className="w-1/6">Search</Button>
 		</form>
 	);
 }
